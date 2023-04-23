@@ -1,25 +1,12 @@
-"""Zadanie 4. Dana jest tablica n liczb całkowitych. Przedstaw algorytm liczący sumę elementów w
-tablicy z zastosowaniem metody „dziel i zwyciężaj”."""
+def suma_fragmentu(A, lewy_indeks, prawy_indeks):
+    if lewy_indeks == prawy_indeks:
+        return A[lewy_indeks]
+    else:
+        srodkowy_indeks = (lewy_indeks + prawy_indeks) // 2
+        lewa_suma = suma_fragmentu(A, lewy_indeks, srodkowy_indeks)
+        prawa_suma = suma_fragmentu(A, srodkowy_indeks + 1, prawy_indeks)
+        return lewa_suma + prawa_suma
 
-##############################################
-
-def sum_dziel_i_zwyciezaj(arr, l, r):
-    if l == r:
-        return arr[l]
-
-    mid = (l + r) // 2
-    left_sum = sum_dziel_i_zwyciezaj(arr, l, mid)
-    right_sum = sum_dziel_i_zwyciezaj(arr, mid + 1, r)
-
-    return left_sum + right_sum
-
-###################################################
-
-# Przykład użycia:
-arr = [1, 3, 5, 7, 9, 11, 13]
-result = sum_dziel_i_zwyciezaj(arr, 0, len(arr) - 1)
-print("Suma elementów tablicy:", result)
-
-###########################################
-
-#Michał Borowski
+A = [1, 2, 3, 4, 5]
+wynik = suma_fragmentu(A, 0, len(A) - 1)
+print(wynik)
